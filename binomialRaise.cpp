@@ -32,20 +32,13 @@ int main() {
     string cs;
     string t, tx, ty;
     char binomio[200];
-    char x[5] = "x";
-    char y[5] = "y";
+    char characters[20] = "xy(+^)";
     vector <int> av;
     vector <int> bv;
     vector <int> nv;
-    cout << "inserire il binomio. forma: (ax+by)^n" << endl;
-    /* cout << "inserire a: ";
-    cin >> a;
-    cout << "inserire b: ";
-    cin >> b;
-    cout << "inserire n: ";
-    cin >> n; */
+    cout << endl << "Formula: (ax+by)^n" << endl << "Substitute value: a,b,n." << endl << endl << "Input: ";
     cin >> binomio;
-    if(binomio[1] == x[0]) {
+    if(binomio[1] == characters[0]) {
         a = 1;
     }
     else {
@@ -61,7 +54,7 @@ int main() {
         }
         a = VectorToInt(av);
     }
-    if(binomio[3+av.size()] == y[0]) {
+    if(binomio[3+av.size()] == characters[1]) {
         b = 1;
     }
     else {
@@ -84,13 +77,19 @@ int main() {
             nv.push_back(n);
         }
         else {
+            n = 1;
             break;
         }
     }
     n = VectorToInt(nv);
-    cout << a << endl << b << endl << n << endl << endl;
+
+    // Is format right?
+    if(binomio[0] != characters[2] || binomio[2+av.size()] != characters[3] || binomio[5+av.size()+bv.size()] != characters[5] || binomio[6+av.size()+bv.size()] != characters[4]) {
+        cout << "Formula not correct." << endl;
+        return 1;
+    }
     if(n > 13 || n < 0) {
-        cout << "Valore non valido. Min 0; max 13" << endl;
+        cout << "Unvalid value. Min 0; max 13" << endl;
         return 1;
     }
     nx = ny = n;
